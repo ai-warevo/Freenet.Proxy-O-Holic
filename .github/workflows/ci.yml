@@ -1,0 +1,87 @@
+name: CI-Build-And-Tests
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main, master ]
+    paths:
+      - 'src/**'
+      - 'tests/**'
+  pull_request:
+    branches: [ main, master ]
+    paths:
+      - 'src/**'
+      - 'tests/**'
+
+permissions:
+  contents: write
+
+jobs:
+  quality-and-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET 10 SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Restore Dependencies
+        run: dotnet restore
+
+      - name: Build Solution (Release)
+        run: dotnet build --no-restore -c Release
+
+      - name: Run Tests with Coverage
+        run: |
+          dotnet test --no-build -c Release \
+            /p:CollectCoverage=true \
+            /p:CoverletOutputFormat=cobertura \
+            /p:CoverletOutput=../../coverage.cobertura.xml
+
+      - name: Parse Coverage Metrics
+        id: coverage_parser
+        run: |
+          # Извлекаем line-rate из сгенерированного xml-отчета cobertura
+          PERCENTAGE=$(python3 -c "import xml.etree.ElementTree as ET; tree = ET.parse('coverage.cobertura.xml'); root = tree.getroot(); print(int(float(root.attrib['line-rate']) * 100))")
+          echo "DEBUG: Extracted percentage: '$PERCENTAGE'"
+
+          if [ "$PERCENTAGE" -lt 50 ]; then 
+            COLOR="#e05d44" 
+          elif [ "$PERCENTAGE" -lt 80 ]; then 
+            COLOR="#dfb317" 
+          else 
+            COLOR="#44cc11" 
+          fi
+
+          echo "percent=${PERCENTAGE}%" >> $GITHUB_OUTPUT
+          echo "color=${COLOR}" >> $GITHUB_OUTPUT
+
+      - name: Generate Coverage Badge
+        id: badge_generator
+        uses: my-repositories/gha/badge@main
+        with:
+          width: '99'
+          height: '20'
+          text_left: 'coverage'
+          text_right: '${{ steps.coverage_parser.outputs.percent }}'
+          bg_color_right: '${{ steps.coverage_parser.outputs.color }}'
+          filename: 'proxy_coverage.svg'
+
+      - name: Isolate Badge for Deploy
+        run: |
+          mkdir -p badge-upload
+          cp "${{ steps.badge_generator.outputs.badge_path }}" badge-upload/proxy_coverage.svg
+          
+      - name: Deploy Badge to separate branch
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: badges
+          folder: badge-upload
+          target-folder: .
+          git-config-name: "github-actions[bot]"
+          git-config-email: "github-actions[bot]@users.noreply.github.com"
+          single-commit: true

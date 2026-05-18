@@ -1,0 +1,24 @@
+## Специфика .NET (Компиляция, кэш и бинарники)
+[Bb]in/
+[Oo]bj/
+[Log]s/
+.net/
+
+## Пользовательские настройки и кэш IDE
+.vs/
+.idea/
+*.user
+*.userosscache
+*.sln.docstates
+
+## Инструменты тестирования и покрытия кода
+TestResults/
+*.debugger
+*.tlog
+*.log
+
+## Специфика операционных систем
+Thumbs.db
+.DS_Store
+ehthumbs.db
+Desktop.ini

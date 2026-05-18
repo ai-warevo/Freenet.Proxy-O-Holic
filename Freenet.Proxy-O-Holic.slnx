@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Freenet.Proxy-O-Holic.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Freenet.Proxy-O-Holic.Tests.csproj" />
+  </Folder>
+</Solution>
