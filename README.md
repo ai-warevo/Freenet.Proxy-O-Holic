@@ -1,8 +1,8 @@
 # 🤖 Freenet.Proxy-O-Holic
 **ИИ-сгенерированный сетевой мост для беспрепятственного мобильного сёрфинга** ✨
 
-[![CI](https://github.com/ai-warevo/Freenet.Proxy-O-Holic/actions/workflows/demo.yml/badge.svg)](https://github.com/loktionov129/Python/actions/workflows/demo.yml)
-[![Coverage](https://raw.githubusercontent.com/ai-warevo/Freenet.Proxy-O-Holic/refs/heads/badges/demo_coverage.svg)](https://loktionov129.github.io/Python)
+[![CI](https://github.com/ai-warevo/Freenet.Proxy-O-Holic/actions/workflows/demo.yml/badge.svg)](https://github.com/ai-warevo/Freenet.Proxy-O-Holic/actions/workflows/demo.yml)
+[![Coverage](https://raw.githubusercontent.com/ai-warevo/Freenet.Proxy-O-Holic/refs/heads/badges/demo_coverage.svg)](https://ai-warevo.github.io/Freenet.Proxy-O-Holic)
 
 
 Проект разработан в рамках экспериментальной лаборатории **ai‑warevo**. Ни одной строчки этого кода не было написано человеком вручную — архитектура, логика, обработка сессий и юнит-тесты полностью спроектированы и материализованы с помощью языковых моделей (LLM). 🧠🚀
