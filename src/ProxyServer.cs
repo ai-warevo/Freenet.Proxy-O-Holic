@@ -35,28 +35,28 @@ public class ProxyServer
             throw;
         }
 
-        while (!cancellationToken.IsCancellationRequested)
+        try
         {
-            try
+            while (!cancellationToken.IsCancellationRequested)
             {
                 var clientSocket = await listener.AcceptTcpClientAsync(cancellationToken);
                 long connectionId = Interlocked.Increment(ref _connectionCounter);
 
-                // Отдаем обработку отдельному классу в бэкграунд-таску
                 var handler = new ClientHandler(clientSocket, connectionId, _settings, _loggerFactory.CreateLogger<ClientHandler>());
                 _ = Task.Run(() => handler.ProcessAsync(), cancellationToken);
             }
-            catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
-            {
-                _logger.LogInformation("Прослушивание портов остановлено по сигналу отмены.");
-                break; 
-            }
-            catch (Exception ex) when (!cancellationToken.IsCancellationRequested)
-            {
-                _logger.LogError(ex, "Ошибка при приеме входящего подключения");
-            }
+        }
+        // Ловим штатную отмену токена в асинхронном сокете .NET 10
+        catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
+        {
+            _logger.LogInformation("Прослушивание портов остановлено по сигналу отмены.");
+        }
+        finally
+        {
+            listener.Stop(); // Гарантированно освобождаем порт в системе
         }
     }
+
 
     private void LogAvailableAddresses()
     {
