@@ -1,7 +1,7 @@
 # 🤖 Freenet.Proxy-O-Holic
 **ИИ-сгенерированный сетевой мост для беспрепятственного мобильного сёрфинга** ✨
 
-[![CI](https://github.com/ai-warevo/Freenet.Proxy-O-Holic/actions/workflows/ci.yml/badge.svg)](https://github.com/ai-warevo/Freenet.Proxy-O-Holic/actions/workflows/demo.yml)
+[![CI](https://github.com/ai-warevo/Freenet.Proxy-O-Holic/actions/workflows/ci.yml/badge.svg)](https://github.com/ai-warevo/Freenet.Proxy-O-Holic/actions/workflows/ci.yml)
 [![Coverage](https://raw.githubusercontent.com/ai-warevo/Freenet.Proxy-O-Holic/refs/heads/badges/proxy_coverage.svg)](https://ai-warevo.github.io/Freenet.Proxy-O-Holic)
 
 
