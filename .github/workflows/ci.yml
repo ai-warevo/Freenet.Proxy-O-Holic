@@ -75,6 +75,16 @@ jobs:
           mkdir -p badge-upload
           cp "${{ steps.badge_generator.outputs.badge_path }}" badge-upload/proxy_coverage.svg
 
+      - name: Deploy Badge to separate branch
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: badges
+          folder: badge-upload
+          target-folder: .
+          git-config-name: "github-actions[bot]"
+          git-config-email: "github-actions[bot]@users.noreply.github.com"
+          single-commit: true
+
       - name: Install ReportGenerator Tool
         run: dotnet tool install --global dotnet-reportgenerator-globaltool
 
@@ -91,12 +101,10 @@ jobs:
           rm -f htmlcov/.gitignore
           touch htmlcov/.nojekyll        
 
-      - name: Deploy Badge to separate branch
+      - name: Deploy Coverage Report to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: badges
-          folder: badge-upload
-          target-folder: .
+          branch: gh-pages
+          folder: htmlcov
           git-config-name: "github-actions[bot]"
           git-config-email: "github-actions[bot]@users.noreply.github.com"
-          single-commit: true
