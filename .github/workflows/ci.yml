@@ -5,11 +5,13 @@ on:
   push:
     branches: [ main, master ]
     paths:
+      - '.github/**'
       - 'src/**'
       - 'tests/**'
   pull_request:
     branches: [ main, master ]
     paths:
+      - '.github/**'
       - 'src/**'
       - 'tests/**'
 
@@ -72,7 +74,23 @@ jobs:
         run: |
           mkdir -p badge-upload
           cp "${{ steps.badge_generator.outputs.badge_path }}" badge-upload/proxy_coverage.svg
-          
+
+      - name: Install ReportGenerator Tool
+        run: dotnet tool install --global dotnet-reportgenerator-globaltool
+
+      - name: Generate HTML Report
+        run: |
+          reportgenerator \
+            -reports:"coverage.cobertura.xml" \
+            -targetdir:"htmlcov" \
+            -reporttypes:Html
+
+      - name: Preparation for HTML Deploy
+        run: |
+          rm -f .gitignore
+          rm -f htmlcov/.gitignore
+          touch htmlcov/.nojekyll        
+
       - name: Deploy Badge to separate branch
         uses: JamesIves/github-pages-deploy-action@v4
         with:
