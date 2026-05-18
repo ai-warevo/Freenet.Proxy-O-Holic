@@ -46,6 +46,11 @@ public class ProxyServer
                 var handler = new ClientHandler(clientSocket, connectionId, _settings, _loggerFactory.CreateLogger<ClientHandler>());
                 _ = Task.Run(() => handler.ProcessAsync(), cancellationToken);
             }
+            catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
+            {
+                _logger.LogInformation("Прослушивание портов остановлено по сигналу отмены.");
+                break; 
+            }
             catch (Exception ex) when (!cancellationToken.IsCancellationRequested)
             {
                 _logger.LogError(ex, "Ошибка при приеме входящего подключения");
