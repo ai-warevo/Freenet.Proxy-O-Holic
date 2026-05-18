@@ -290,10 +290,10 @@ var assemblies = [
   {
     "name": "Freenet.Proxy-O-Holic",
     "classes": [
-      { "name": "AiWarevo.Freenet.ProxyOHolic.ClientHandler", "rp": "Freenet.Proxy_O_Holic_ClientHandler.html", "cl": 40, "ucl": 23, "cal": 63, "tl": 123, "cb": 13, "tb": 20, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "AiWarevo.Freenet.ProxyOHolic.ProxyServer", "rp": "Freenet.Proxy_O_Holic_ProxyServer.html", "cl": 36, "ucl": 10, "cal": 46, "tl": 102, "cb": 12, "tb": 14, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "AiWarevo.Freenet.ProxyOHolic.ClientHandler", "rp": "Freenet.Proxy_O_Holic_ClientHandler.html", "cl": 54, "ucl": 9, "cal": 63, "tl": 123, "cb": 15, "tb": 20, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "AiWarevo.Freenet.ProxyOHolic.ProxyServer", "rp": "Freenet.Proxy_O_Holic_ProxyServer.html", "cl": 40, "ucl": 6, "cal": 46, "tl": 102, "cb": 12, "tb": 14, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "AiWarevo.Freenet.ProxyOHolic.ProxySettings", "rp": "Freenet.Proxy_O_Holic_ProxySettings.html", "cl": 5, "ucl": 0, "cal": 5, "tl": 11, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "Program", "rp": "Freenet.Proxy_O_Holic_Program.html", "cl": 0, "ucl": 15, "cal": 15, "tl": 23, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "Program", "rp": "Freenet.Proxy_O_Holic_Program.html", "cl": 13, "ucl": 2, "cal": 15, "tl": 23, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
     ]},
 ];
 
